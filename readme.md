@@ -195,7 +195,7 @@ app.listen(3000,function(){
 })
 ```
 
-##### 5.1.自动重启服务器
+#### 5.1.自动重启服务器
 
 使用第三方命令行工具：`nodemon`来帮我们解决频繁修改代码重启服务器问题。
 
@@ -218,7 +218,7 @@ nodemon app.js
 
 
 
-##### 5.2.路由
+#### 5.2.路由
 
 路由其实就是一张表，映射着路径与处理的关系。准确来讲，就是给不同路径绑定不同的处理程序。
 
@@ -240,7 +240,7 @@ app.post('/',function(req,res){
 })
 ```
 
-##### 5.2.1.静态服务
+#### 5.2.1.静态服务
 
 其实说白了，就是服务器将url路径对应到文件路径。
 
@@ -254,9 +254,7 @@ app.use('/public',express.static('public'))
 app.use('/static',express.static(path.join(__dirname,'public')))
 ```
 
-
-
-##### 5.3.express中的art-template模板引擎
+#### 5.3.express中的art-template模板引擎
 
 安装：
 
