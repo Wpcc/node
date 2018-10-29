@@ -174,6 +174,228 @@ response.setHeader('Content-type','text/plain;charset=utf-8');
 
 ## 4.模块系统和npm
 
+使用Node编写应用程序主要是在使用：
+
+ - ECMAScript语言
+    - 和浏览器不一样在与Node中没有DOM、BOM
+- 核心模块
+  - 文件操作的fs
+  - http服务的http
+  - url路径操作模块
+  - path路径处理模块
+- 第三方模块
+  - art-template
+- 自定义模块
+  - 自己编写的模块（文件）
+
+
+
+#### 4.1.什么是模块化
+
+模块化一般具有两种特性：
+
+ - 文件作用域
+ - 通信规则
+    - 加载（require）
+    - 导出（exports）
+
+说白了就是彼此文件可以相互引用，彼此的作用域又不产生影响。
+
+
+
+#### 4.1.1.加载
+
+语法:
+
+```javas
+var 自定义变量名称 = require('模块')；
+```
+
+两个作用：
+
+ - 执行被加载模块中的代码
+ - 得到被加载模块中的exports（模块导出对象）
+
+
+
+#### 4.1.2.导出
+
+- node中有模块作用域，默认文件中的所有成员只在当前文件模块有效
+
+- 对于希望可以被其它模块访问的成员，往往需要将其挂载到exports对象上。
+
+
+exports挂载：
+
+```javas
+exports.a = 123;
+exports.b = 'hello';
+exports.c = function(){
+    console.log('hello world');
+}
+```
+
+exports替换：
+
+```javascript
+modules.exports = 123;
+
+//modules.exports只能导出一个函数、对象或字符串
+modules.exports = 'hello';
+
+```
+
+简而言之：一种是导出exports对象，另一种是将exports替换进行导出。
+
+
+
+#### 4.1.3.原理解析
+
+为什么替换exports对象是module.exports = XX 而不是 exports = XX ？
+
+准确来讲exports是module.exports的一个引用（感觉在js中引用便是指针的意思，这和C++的引用不是一个类型）。
+
+在模块中其实隐藏封装了如下代码：
+
+```js
+var module = {
+    var exports = {};
+}
+/*
+	module.exports.a = 123;(点操作符太麻烦)
+	为了方便给导出对象添加属性、方法做了一个赋值操作
+*/
+var exports = module.exports;
+return module.exports;
+```
+
+故：
+
+​	如果我们对exports变量赋值，实际上只是改变exports的内容或指向，并没有改变最后返回的module.exports的指向。
+
+
+
+#### 4.1.4.require.js加载规则
+
+模块种类：
+
+- 核心模块
+  - 模块名
+- 第三方模块
+  - 模块名
+- 用户自己写的模块
+  - 模块名
+
+规则：
+
+- 优先加载缓存，并且不重复加载：
+  - 比如，有main.js/a.js/b.js三个文件，a.js引入了b.js，mian.js引入了a.js和b.js，在引入a.js的时候，main已经引入了b，故再次引入并不去加载b中的内容。
+
+```javascript
+//main.js
+require('./a');
+require('./b');
+
+//a.js
+require('./b');
+console.log('this is a.js');
+
+//b.js
+console.log('this is b.js');
+
+/*
+	执行main.js，仅仅只打印一次b.js，这是因为为了模块加载效率考虑，require并不重复的引用包。但是引用会得到模块导出的内容：即赋给module.exports的值。
+*/
+```
+
+- 加载核心模块
+  - node中的核心模块被编译成二进制了文件存储在运行文件中，故加载核心模块仅仅只需要引入模块名即可。
+- 加载第三方模块
+  - 第三方模块的加载不是通过路径，这点和加载我们自己定义的模块不同，任何第三方模块的名字和核心模块都不一样。
+  - 第三方模块加载，会找到目录中的node-modules文件，如果没有会找上一级目录下的node-modules，直到根文件为止。
+  - 在找到node-modules文件后，会进入到指定文件当中（如：art-template），在该指定目录中，通过main定位到引用文件，如果main错误，或者main中定义的文件不错在，会自动调用当前文件中的index.js文件，否则报错。
+
+
+
+#### 4.1.5.npm
+
+- package.json
+  - 包描述文件，描述着node-modules中的包文件。这是因为我们下载的包文件（如art-template）本身有很多依赖文件，光看node-modules文件夹很难分清安装了那些文件，通过package.json便一目了然。
+  - package.json充当着包文件说明书的作用（按照package.json下载的文件，在大版本固定会自动升级最新版本，如8.2.1------>8为大版本）。
+- package-lock.json
+  - 补充package.json无法固定版本的缺陷出现。
+  - 安装之后锁定包的版本，手动更改package.json文件安装将不会更新包，想要更新只能使用 npm install xxx@1.0.0 --save 这种方式来进行版本更新package-lock.json 文件才可以
+  - 加快了npm install 的速度，因为 package-lock.json 文件中已经记录了整个 node_modules 文件夹的树状结构，甚至连模块的下载地址都记录了，再重新安装的时候只需要直接下载文件即可
+
+故在安装包文件的时候，最好调用初始化命令，从而自动生成package.json和package-lock.json文件。
+
+```javascript
+npm install
+npm install --save
+//在执行以上命令，npm会自动给我们生成一个package-lock.json文件。5.0之前没有lock.json版本时的命令
+
+npm init
+//建议的命令行操作
+```
+
+常用命令：
+
+ - npm init
+    - npm init -y 可以跳过向导，快速生成
+
+- npm install
+  - 安装dependencies选项中的依赖项
+
+- npm install 报名
+  - 在5.0之前的版本只下载包名，不存储进package.josn
+  - 简写：npm i 包名
+
+- npm install --save 包名
+  - 在5.0之前的版本，下载并且保存依赖项（package.json）
+  - 简写：npm install -S
+
+- npm uninstall 包名
+  - 在5.0版本之前只删除，如果有依赖项会依然保存
+  - 在5.0版本之后，会删除依赖项
+  - 简写：npm un 包名
+
+- npm uninstall --save 包名
+  - 在5.0版本之前删除的同时会删除依赖信息
+  - 简写：npm un -S 包名
+
+- npm --help
+  - 查看使用帮助
+  - npm 特定命令 --help：查看特定命令的使用帮助
+
+
+
+#### 4.1.6.npm被墙问题
+
+http://npm.taobao.org/淘宝的开发团队把npm在国内做了一个备份。
+
+安装淘宝的cnpm：
+
+```javascript
+npm intall --global cnpm
+```
+
+如果不想安装cnpm又想使用淘宝的服务器来下载：
+
+``` shell
+npm install jquery --registry=https://registry.npm.taobao.org
+```
+
+但是每一次手动这样加参数很麻烦，所以我们可以把这个选项加入到配置文件中：
+
+```shell
+npm config set registry https://registry.npm.taobao.org
+
+#检验是否配置成功
+npm config list
+```
+
+只要经过上面命令的配置，则以后所有的`npm install`都会默认通过淘宝的服务器来下载。
+
 
 
 ## 5.express
