@@ -402,6 +402,7 @@ npm config list
 
 - express对路由的封装
 - express对静态资源文件访问的封装
+- [官网](http://www.expressjs.com.cn/)
 
 ```javascript
 //实例
@@ -511,3 +512,51 @@ app.get('/', function (req, res) {
 });
 
 ```
+
+#### 5.4.重定向
+
+原生：
+
+```javascript
+res.statusCode = 302;
+res.setHeader('Location','/');
+```
+
+express：
+
+```javascript
+res.redirect('/');
+```
+
+#### 5.5.获取post数据
+
+在express中没有获取post请求体内容的api，需要借助第三方插件，即中间件（middleware）body-parser。
+
+安装：
+
+```shell
+npm install body-parser
+```
+
+使用：
+
+```javascript
+var express = require('express')
+var bodyParser = require('body-parser')
+
+var app = express()
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
+
+//body-parser 将内容解析到req中的body当中，即通过req.body可以获取浏览器post发送的内容
+app.use(function (req, res) {
+  res.setHeader('Content-Type', 'text/plain')
+  res.write('you posted:\n')
+  res.end(JSON.stringify(req.body, null, 2))
+})
+```
+

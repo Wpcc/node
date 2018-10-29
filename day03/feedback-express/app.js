@@ -3,7 +3,7 @@ var fs = require('fs');
 var app = express();
 
 
-app.engine('air', require('express-art-template'));
+app.engine('html', require('express-art-template'));
 /*
 1.读取文件原生的，
 2.数据库原生定义在app.js中
@@ -30,26 +30,23 @@ var contents = [
  },
 ];
 app.get('/', function (req, res) {
-     res.render('index.air', {
+     res.render('index.html', {
         contents:contents
      });
  });
 app.use('/public/',express.static('./public'));
 
-// 404页面设置
-app.use(function(req,res){
-  res.status(404).render('404.html');
-})
-
 app.get('/post', function (req, res) {
-  res.render(__dirname + '/views/post.html');
+  res.render('post.html');
 });
 // 处理表单程序
 app.get('/handleData', function (req, res) {
   contents.unshift(req.query);
-  res.statusCode = 302;
-  res.setHeader('Location','/');
-  res.end();
+  res.redirect('/');
 });
 
+// 404页面设置
+app.use(function(req,res){
+  res.status(404).render('404.html');
+})
 app.listen(3000,()=>console.log('example app listening on port 3000!'));
