@@ -110,7 +110,7 @@ response.setHeader('Content-type','text/plain;charset=utf-8');
 
 ## 3.服务端渲染
 
-#### 3.1渲染逻辑
+#### 3.1.渲染逻辑
 
  - 服务器读取数据
 
@@ -121,7 +121,7 @@ response.setHeader('Content-type','text/plain;charset=utf-8');
     - 模板引擎的使用，如art-template模板引擎：使用方法和浏览器中的使用方法类似
 
 
-#### 3.2前后端分离
+#### 3.2.前后端分离
 
  - 简单理解页面的生成（模板与数据结合）是发生在服务器还是浏览器。如果是在浏览器则表现为前后端分离，如果是在服务器则不是。
  - 前后端分离的优点
@@ -136,7 +136,7 @@ response.setHeader('Content-type','text/plain;charset=utf-8');
 
 
 
-#### 3.3静态资源处理
+#### 3.3.静态资源处理
 
 在服务器中，通常用public目录来存放用户能够访问到的资源。用views来存放发送给用户的html展示页面。
 
@@ -150,7 +150,7 @@ response.setHeader('Content-type','text/plain;charset=utf-8');
 
 
 
-#### 3.4url解析
+#### 3.4.url解析
 
 主要是node提供的url模块中的parse方法，该方法会将url字符串解析成一个数组。
 
@@ -159,7 +159,7 @@ response.setHeader('Content-type','text/plain;charset=utf-8');
 
 
 
-#### 3.5重定向
+#### 3.5.重定向
 
 通过服务器让客户端重定向操作：
 
