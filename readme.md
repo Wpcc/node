@@ -463,7 +463,7 @@ app.post('/',function(req,res){
 })
 ```
 
-#### 5.2.1.静态服务
+##### 5.2.1.静态服务
 
 其实说白了，就是服务器将url路径对应到文件路径。
 
@@ -476,6 +476,65 @@ app.use('/public',express.static('public'))
 //__dirname为文件执行位置的绝对路径，然后加上public文件夹
 app.use('/static',express.static(path.join(__dirname,'public')))
 ```
+
+##### 5.2.2.路由模块的提取
+
+目的：将app.js中的专门处理路由的代码封装成模块。
+
+问题：分离出来代码对原模块对象的依赖。
+
+- 通过回调函数解决依赖
+
+```javascript
+//app.js
+var express = require('express');
+var app = express();
+
+/*
+	提取出去的路由代码，该模块中的app对该模块有依赖
+	app.get('/',function(err,data){})
+*/
+var router = require('./router');
+router(app);
+```
+
+```javascript
+//router.js
+//通过回调函数，解决依赖问题
+var router = function(app){
+    app.get('/',function(err,data){});
+}
+exports = router;
+```
+
+- 通过express中提供的api解决依赖
+  - API的主要方法就是生成一个对象，将所有对象导出。
+
+```javascript
+//app.js
+var express = require('express');
+var app = express();
+
+/*
+	提取出去的路由代码，该模块中的app对该模块有依赖
+	app.get('/',function(err,data){})
+*/
+var router = require('./router');
+app.use(router);
+```
+
+```javascript
+//router.js
+//通过express中的API解决：本质是通过对象
+var express = require('express');
+var router = express.Router();
+
+router.get('/',function(err,data){});
+
+module.exports = router;
+```
+
+
 
 #### 5.3.express中的art-template模板引擎
 
