@@ -319,20 +319,36 @@ console.log('this is b.js');
 
 #### 4.1.5.npm
 
+##### ---npm5.0之前版本
+
 - package.json
   - 包描述文件，描述着node-modules中的包文件。这是因为我们下载的包文件（如art-template）本身有很多依赖文件，光看node-modules文件夹很难分清安装了那些文件，通过package.json便一目了然。
   - package.json充当着包文件说明书的作用（按照package.json下载的文件，在大版本固定会自动升级最新版本，如8.2.1------>8为大版本）。
+
+```shell
+npm install 包名
+#文件不会出现在package.json当中
+
+npm install 包名 --save
+#文件才会出现在package.json当中
+```
+
+
+
+##### ---npm5.0之后版本
+
+在package.json的基础上又补充了package-lock.json文件：
+
 - package-lock.json
   - 补充package.json无法固定版本的缺陷出现。
-  - 安装之后锁定包的版本，手动更改package.json文件安装将不会更新包，想要更新只能使用 npm install xxx@1.0.0 --save 这种方式来进行版本更新package-lock.json 文件才可以
   - 加快了npm install 的速度，因为 package-lock.json 文件中已经记录了整个 node_modules 文件夹的树状结构，甚至连模块的下载地址都记录了，再重新安装的时候只需要直接下载文件即可
+  - 安装之后锁定包的版本，手动更改package.json文件安装将不会更新包，想要更新只能使用 npm install xxx@1.0.0 --save 这种方式来进行版本更新package-lock.json 文件才可以
 
 故在安装包文件的时候，最好调用初始化命令，从而自动生成package.json和package-lock.json文件。
 
-```javascript
+```shell
 npm install
-npm install --save
-//在执行以上命令，npm会自动给我们生成一个package-lock.json文件。5.0之前没有lock.json版本时的命令
+//文件会自动出现在package.json和package-lock.json当中
 
 npm init
 //建议的命令行操作
@@ -483,7 +499,7 @@ app.use('/static',express.static(path.join(__dirname,'public')))
 
 问题：分离出来代码对原模块对象的依赖。
 
-- 通过回调函数解决依赖
+- **通过回调函数解决依赖**
 
 ```javascript
 //app.js
@@ -508,7 +524,7 @@ exports = router;
 ```
 
 - 通过express中提供的api解决依赖
-  - API的主要方法就是生成一个对象，将所有对象导出。
+  - **API的主要方法就是生成一个对象，将所有对象导出。**
 
 ```javascript
 //app.js
