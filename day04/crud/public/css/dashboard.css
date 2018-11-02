@@ -100,3 +100,7 @@ body {
 tbody td:last-child a:last-child{
   margin-left: 10px;
 }
+/* reset */
+.modal-header .close{
+  marign:-1rem;
+}

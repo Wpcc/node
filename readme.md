@@ -154,7 +154,7 @@ response.setHeader('Content-type','text/plain;charset=utf-8');
 
 主要是node提供的url模块中的parse方法，该方法会将url字符串解析成一个数组。
 
- - 如果该方法添加true,类似于这样url.prase(url,true);会将url的查询字符串解析成对象
+ - 如果该方法添加true,类似于这样url.parse(url,true);会将url的查询字符串解析成对象
  - 如果不添加true，则不解析查询字符串。
 
 

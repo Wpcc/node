@@ -10,7 +10,7 @@
     <title>Dashboard Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="node_modules/bootstrap//dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="public/css/dashboard.css" rel="stylesheet">
@@ -138,16 +138,37 @@
                 <tr>
                   <td><%=students[i].id%></td>
                   <td><%=students[i].name%></td>
-                  <td><%=students[i].gender%></td>
+                  <td><%=students[i].gender===1 ? '女' : '男'%></td>
                   <td><%=students[i].age%></td>
                   <td><%=students[i].hobbies%></td>
-                  <td><a href="/add">删除</a><a href="/mod">修改</a></td>
+                  <td>
+                    <a href="javascript:;" class="delButton" data-id="<%=students[i].id%>" data-toggle="modal" data-target="#myModal">删除</a>
+                    <a href="/mod?id=<%=students[i].id%>">修改</a></td>
                 </tr>
                 <%}%>
               </tbody>
             </table>
           </div>
         </main>
+        <!-- 弹框 -->
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">提示框</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              </div>
+              <div class="modal-body">
+                你确定要删除该选项？
+              </div>
+              <div class="modal-footer">
+                <button id="submit" type="button" class="btn btn-primary" data-dismiss="modal">确认</btton>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -155,8 +176,22 @@
     ================================================== -->
     <!-- Icons -->
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script>
       feather.replace()
+      var data = '';
+      var delButton = document.querySelectorAll('.delButton');
+      for(var i=0;i<delButton.length;i++){
+        delButton[i].addEventListener('click',function(){
+          data = this.getAttribute('data-id');
+          console.log(data);
+        })
+      }
+      var submit = document.querySelector('#submit');
+      submit.addEventListener('click',function(){
+        location.href = '/del?id=' + data;
+      })
     </script>
   </body>
 </html>

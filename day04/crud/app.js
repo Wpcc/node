@@ -1,6 +1,6 @@
 var express = require('express');
 var router = require('./router');
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
 
 var app = express();
 // 开放静态资源
