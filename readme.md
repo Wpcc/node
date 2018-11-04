@@ -635,3 +635,88 @@ app.use(function (req, res) {
 })
 ```
 
+### 6.安装mongoDB
+
+下载地址：https://www.mongodb.com/dr/fastdl.mongodb.org/win32/mongodb-win32-x86_64-2008plus-ssl-4.0.3-signed.msi/download
+
+注意事项：
+
+- 当下载完mongoDB后，需要在磁盘文件根目录下创建data/db文件目录，否则mongoDB无法启动。
+- 配置全局mongoDB全局变量，使其在任意目录下可运行
+- 通过命令行`mongod --version`查看版本号确认安装成功
+
+#### 5.1.启动关系数据库
+
+启动：
+
+```shell
+# mongondb 默认使用执行 mongod 命令所处盘符根目录下的 /data/db 作为自己的数据存储目录
+# 所有在第一次执行该命令之前需要新建一个 /data/db
+mongod
+```
+
+如果要修改默认的数据存储目录，则需要：
+
+```shell
+mongod --dbpath=数据存储目录路径
+```
+
+停止：
+
+```shell
+ctrl+c
+```
+
+#### 5.2.连接和退出数据库
+
+连接：
+
+```shell
+# 在通过mongod启动服务器程序下，另开一个命令窗口输入：
+mongo
+```
+
+退出：
+
+```shell
+# 在连接状态下输入exit退出连接
+exit
+```
+
+#### 5.3.基本命令
+
+在使用mongoDB数据库默认处在的位置是在test中（如果数据库中没有数据，通过`show dbs`是无法查看的，但通过`db`可以查看当前操作的数据库）。
+
+- show dbs
+  - 查看显示所有数据库
+  - 如果数据库没有数据，默认不显示该数据库
+- db
+  - 查看当前操作的数据库
+- use 数据库名
+  - 切换到指定的数据（如果没有则会新建该数据库
+- 创建表
+
+```shell
+db.students.insertOne({"name":"jack"})
+```
+
+- 查看表
+
+```shell
+db.students.find()
+# 或在数据库中
+show collecitons
+```
+
+#### 5.4.在node中操作mongoDB
+
+##### 5.4.1.使用官方的mongodb包来操作
+
+https://www.npmjs.com/package/mongodb
+
+##### 5.4.2.使用第三方包
+
+第三方包`mongoose`基于mongoDB官方的`mongodb`做的封装：
+
+​	
+
