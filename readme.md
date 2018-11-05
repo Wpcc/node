@@ -635,7 +635,9 @@ app.use(function (req, res) {
 })
 ```
 
-### 6.安装mongoDB
+## 6.安装mongoDB
+
+
 
 下载地址：https://www.mongodb.com/dr/fastdl.mongodb.org/win32/mongodb-win32-x86_64-2008plus-ssl-4.0.3-signed.msi/download
 
@@ -645,7 +647,7 @@ app.use(function (req, res) {
 - 配置全局mongoDB全局变量，使其在任意目录下可运行
 - 通过命令行`mongod --version`查看版本号确认安装成功
 
-#### 5.1.启动关系数据库
+### 6.1.启动关系数据库
 
 启动：
 
@@ -667,7 +669,7 @@ mongod --dbpath=数据存储目录路径
 ctrl+c
 ```
 
-#### 5.2.连接和退出数据库
+### 6.2.连接和退出数据库
 
 连接：
 
@@ -683,7 +685,7 @@ mongo
 exit
 ```
 
-#### 5.3.基本命令
+### 6.3.基本命令
 
 在使用mongoDB数据库默认处在的位置是在test中（如果数据库中没有数据，通过`show dbs`是无法查看的，但通过`db`可以查看当前操作的数据库）。
 
@@ -708,15 +710,207 @@ db.students.find()
 show collecitons
 ```
 
-#### 5.4.在node中操作mongoDB
+### 6.4.在node中操作mongoDB
 
-##### 5.4.1.使用官方的mongodb包来操作
+#### 6.4.1.使用官方的mongodb包来操作
 
 https://www.npmjs.com/package/mongodb
 
-##### 5.4.2.使用第三方包
+#### 6.4.2.使用第三方包
+
+官方文档：https://mongoosejs.com/
 
 第三方包`mongoose`基于mongoDB官方的`mongodb`做的封装：
 
-​	
+```javascript
+var mongoose = require('mongoose');
+//连接mongoDB数据库
+mongoose.connect('mongodb://localhost/test',{userMongoClient:true});
+
+mongoose.Promise = global.Promise;
+
+//创建表模板也就是表的格式，值得注意地是数据库的表名会以小写复数的命名出现
+var Cat = mongoose.model('Cat',{name:String});
+var kitty = new Cat({name :'zildjian'});
+
+kitty.save(function(err){
+    if(err){
+        console.log(err);
+    }else{
+        console.log('meow');
+    }
+})
+```
+
+#### 6.4.3.mongoDB基本概念
+
+mongoDB中的数据库相当于mysql中的数据库，集合相当于表，文档就是表记录。
+
+- 数据库---->对象
+- 集合---->数组
+- 文档---->对象
+
+例如：
+
+```javascript
+{
+    qq:{
+        users:[
+            {},
+            {},
+            {}
+        ]
+        producits:[
+            {},
+            {}
+        ]
+    },
+        weixin:{
+            
+        }
+}
+```
+
+#### 6.4.4.mongoose的增删改查
+
+具体文档：https://mongoosejs.com/docs/queries.html
+
+增删改查的四个方法都是建立在model上，所有在这之前必须建立到数据库模型这一步。
+
+```javascript
+var mongoose = require('mongoose');
+// 1.连接数据库
+mongoose.connect('mongodb://localhost/test',{useNewUrlParser:true});
+
+// 2.建立数据结构
+var Schema = mongoose.Schema;
+var mySchema = new Schema({
+  name:{
+    type:String,
+    required: true  //必须有
+  },
+  password:{
+    type:String,
+    required:true
+  },
+  email:{
+    type:String
+  }
+})
+
+/*
+3.将数据结构发布成模型
+第一个参数：
+  传入一个大写名词单数字符串用来表示集合名称
+  mongoose 会自动将大写名词的字符串生成小写复数的集合名称
+第二个参数：
+  架构Schema
+返回值：模型构造函数
+ */
+var User = mongoose.model('User',mySchema);
+```
+
+
+
+增：
+
+```javascript
+var admin = new User({
+  username: 'zs',
+  password: '123456',
+  email: 'admin@admin.com'
+})
+
+admin.save(function (err, ret) {
+  if (err) {
+    console.log('保存失败')
+  } else {
+    console.log('保存成功')
+    console.log(ret)
+  }
+})
+```
+
+查：
+
+find(conditions,projection,skip,callback) find的四个参数分别是条件，显示的项目，跳过的数据，回调函数。
+
+```javascript
+//查询所有
+User.find(function (err, ret) {
+  if (err) {
+    console.log('查询失败')
+  } else {
+    console.log(ret)
+  }
+})
+//查询姓名是张三的所有数据
+User.find({
+  username: 'zs'
+}, function (err, ret) {
+  if (err) {
+    console.log('查询失败')
+  } else {
+    console.log(ret)
+  }
+})
+//查询姓名为张三的第一个数据
+User.findOne({
+  username: 'zs'
+}, function (err, ret) {
+  if (err) {
+    console.log('查询失败')
+  } else {
+    console.log(ret)
+  }
+})
+```
+
+删：
+
+```javascript
+User.deleteMany({
+  username: 'zs'
+}, function (err, ret) {
+  if (err) {
+    console.log('删除失败')
+  } else {
+    console.log('删除成功')
+    console.log(ret)
+  }
+})
+User.deleteOne({
+  username: 'zs'
+}, function (err, ret) {
+  if (err) {
+    console.log('删除失败')
+  } else {
+    console.log('删除成功')
+    console.log(ret)
+  }
+})
+```
+
+改：
+
+感觉mongoose函数封装的有问题，很多api无法更新没存在的数据。即该数据必须原本就存在于数据库当中。
+
+```javascript
+//updateOne中选择的项和修改的项必须一致
+User.updataOne({password:'123456'}, {
+  password: '123'
+}, function (err, ret) {
+  if (err) {
+    console.log('更新失败')
+  } else {
+    console.log('更新成功')
+  }
+})
+```
+
+## 7.promise
+
+
+
+
 

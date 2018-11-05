@@ -1,1 +1,33 @@
-{"students":[{"id":0,"name":"张三","gender":0,"age":"21","hobbies":" 吃饭， 睡觉， 打豆豆 "},{"id":1,"name":"张三","gender":0,"age":20,"hobbies":" 吃饭， 睡觉， 打豆豆 "},{"id":2,"name":"张三","gender":0,"age":20,"hobbies":" 吃饭， 睡觉， 打豆豆 "},{"id":3,"name":"张三","gender":0,"age":20,"hobbies":" 吃饭， 睡觉， 打豆豆 "},{"id":4,"name":"wpc","gender":0,"age":"27","hobbies":"没爱好"}]}
+{
+  "students": [{
+    "id": 0,
+    "name": "张三",
+    "gender": 0,
+    "age": "21",
+    "hobbies": " 吃饭， 睡觉， 打豆豆 "
+  }, {
+    "id": 1,
+    "name": "张三",
+    "gender": 0,
+    "age": 20,
+    "hobbies": " 吃饭， 睡觉， 打豆豆 "
+  }, {
+    "id": 2,
+    "name": "张三",
+    "gender": 0,
+    "age": 20,
+    "hobbies": " 吃饭， 睡觉， 打豆豆 "
+  }, {
+    "id": 3,
+    "name": "张三",
+    "gender": 0,
+    "age": 20,
+    "hobbies": " 吃饭， 睡觉， 打豆豆 "
+  }, {
+    "id": 4,
+    "name": "wpc",
+    "gender": 0,
+    "age": "27",
+    "hobbies": "没爱好"
+  }]
+}
