@@ -1,0 +1,22 @@
+{
+  "name": "day06",
+  "version": "1.0.0",
+  "description": "- `__filename`和`__dirname`",
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "art-template": "^4.13.1",
+    "bootstrap": "^4.1.3",
+    "express": "^4.16.4",
+    "express-art-template": "^1.0.1",
+    "jquery": "^3.3.1"
+  }
+}

@@ -412,6 +412,44 @@ npm config list
 
 只要经过上面命令的配置，则以后所有的`npm install`都会默认通过淘宝的服务器来下载。
 
+#### 4.1.7.path文件系统
+
+参考文档：http://nodejs.cn/api/path.html
+
+- path.basename
+  - 获取一个路径的文件名（默认包含扩展名）
+- path.dirname
+  - 获取一个路径中的目录部分
+- path.extname
+  - 获取一个路径中的扩展名
+- path.parse
+  - 将路径解析成对象
+- path.join
+  - 将两个路径拼接在一起
+  - 需要说明地是：windows操作系统路径分隔符为反斜杠，而linux和mac操作系统为斜杠。
+- path.isAbsolute
+  - 判断该路径是否为绝对路径
+
+#### 4.1.8.Node中的非模块成员
+
+在每个模块中，除了require、exports等模块相关API之外，还有两个特殊的成员：
+
+- `__dirname` 可以用来获取当前文件模块所属目录的绝对路径
+- `__filename` 可以用来获取当前文件的绝对路径
+
+应用场景：
+
+在Node中，文件中的相对路径是相对于执行文件，而不是相对于文件。
+
+如以下代码目录：
+
+- example
+  - example.txt
+  - file.js
+- file1.js
+
+如果在file写入example的相对路径，但是在file1中引入file，那么当执行file1的时候，是无法找到example文件，故此时需要用到example的绝对路径，也就是上面的两个变量。
+
 
 
 ## 5.express
@@ -587,6 +625,42 @@ app.get('/', function (req, res) {
 });
 
 ```
+
+#### 5.3.1.art-template继承
+
+- art-template拼接：将公用部分的内容引入到展示的页面当中。
+
+```html
+<!-- index.js -->
+<% extend('./layout.art') %>
+<% block('head', function(){ %> ... <% }) %>
+```
+
+```javascript
+<!--layout.art-->
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>My Site</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <!--block中的内容为默认内容，如果继承页面没有填写内容，即填写默认内容-->
+    <% block('head',function(){%> hello world <%})%> 
+</body>
+</html>
+```
+
+
+
+- art-template继承：定义一个模板，该模板自定义的部分用block包裹起来。
+
+```html
+<% include('./header.art') %>
+```
+
+
 
 #### 5.4.重定向
 
