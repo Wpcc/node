@@ -583,7 +583,7 @@ app.use(router);
 var express = require('express');
 var router = express.Router();
 
-router.get('/',function(err,data){});
+router.get('/',function(req,res){});
 
 module.exports = router;
 ```
@@ -982,7 +982,13 @@ User.updataOne({password:'123456'}, {
 })
 ```
 
-## 7.promise
+## 7.0.服务端开发
+
+### 7.1.MD5加密
+
+MD5通常用于用户密码等隐私安全加密，我们一般可以理解MD5只能用于正向加密而无法反向解密。
+
+javascript用法： https://github.com/blueimp/JavaScript-MD5
 
 
 
