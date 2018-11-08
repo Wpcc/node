@@ -992,5 +992,62 @@ javascript用法： https://github.com/blueimp/JavaScript-MD5
 
 
 
+### 7.2.cookie
+
+**cookie是为了解决http协议为无状态而出现的一种方式**。换言之，客户端与服务端基于http通信的过程就如同两个一岁儿童进行对话一般，他们并不知道对方上一句说的是什么，就好比《夏洛特烦恼》中老大爷和夏洛的对话一般，夏洛说：“我找马冬梅”，老大爷：“马什么梅？”。夏洛：“马冬梅”。“冬什么梅？”。夏洛：“马东梅啊！”。“哦！马什么梅？”。
+
+cookie参数的说明：
+
+- Name和Value
+  - cookie中的内容是以键值对的形式出现
+- Domain
+  - cookie对于哪个域名是有效的。所有向该域发送的请求中都会包含这个cookie信息。
+- Path
+  - 对于指定域中的按个路径，应该向服务器发送cookie。（相对于Domain做进一步限制）
+- Expires、Max-Age
+  - cookie在浏览器中存储的过期时间。默认情况为会话结束。也可以自己设置，不过该时间日期为GMT格式：Wdy，DD-Mon-YYYY HH:MM:SS GMT 。
+- HTTP==httpOnly
+- Secure
+  - 当设置安全标志的时候，意味着cookie只能通过https协议才会发送。
+
+以下为带有cookie值的http实例：
+
+```http
+HTTP/1.1 200 OK
+Content-type:text/html
+Set-Cookie:name=value;expire=Mon,22-Jan-07 07:10:24 GMT;domain = .wrox.com
+```
+
+该头信息指定了一个叫name的cookie，它会在格林威治时间2007年1月22日7:10:24失效，同时对于www.wrox.com和wrox.com的任何子域（如p2p.wrox.com）都有效。
+
+```http
+HTTP/1.1 200 OK
+Content-type:text/html
+Set-Cookie:name=value; domain=.wrox.com; path=/; secure 
+```
+
+secure标志是cookie唯一一个非名值对儿的部分，直接包含一个secure单词。
+
+这里，创建了一个对于所有wrox.com的子域和域名下（由path参数指定的）所有页面都有效的cookie。因为设置了secure标志，这个cookie只能通过SSL连接才能传输（https）。
+
+域、路径、失效时间好secure标志都是服务器给浏览器的指示，以指定何时应该发送cookie。这些参数并不会作为发送到服务器的cookie信息的一部分，只有名值对儿才会被发送。
 
 
+
+#### 7.2.1.JavaScript中的cookie
+
+获取cookie：
+
+- `document.cookie`
+
+设置cookie：
+
+- `document.cookie = 'name=wpc;'`
+- 全部格式：
+  - `name=value; expires=expiration_time; path=domain_path; domain=domain_name; secure`
+
+删除cookie：
+
+- `document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 GMT";`
+- 当删除的时候不必指定cookie的值
+- 删除 cookie 非常简单。您只需要设置 expires 参数为以前的时间即可

@@ -7,6 +7,9 @@
   + 页面之间的引用
   + 定义一个模板，通过模板生成页面
 
+### example02
+- cookie案例
+
 ### 其余文件说明
 - models
   + 数据的分类，用来存放不同数据表的规划模型
@@ -32,4 +35,3 @@
 | 登录页处理(login)      | post     |         | email/nickname          |
 | 注册页展示（register） | get      |         |                         |
 | 注册页处理（register） | post     |         | email/nickname/password |
-
