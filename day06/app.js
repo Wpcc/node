@@ -3,6 +3,7 @@ var app = express();
 var router = require('./router');
 var path = require('path');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 
 // 开放静态服务
 app.use('/public',express.static(path.join(__dirname,'/public')));
@@ -12,6 +13,12 @@ app.engine('html',require('express-art-template'));
 //配置body-parser
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
+// 配置session插件
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true
+}))
 
 app.use(router);
 

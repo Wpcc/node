@@ -776,7 +776,8 @@ exit
 db.students.insertOne({"name":"jack"})
 ```
 
-- 查看表
+- show collections
+  - 显示所有表
 
 ```shell
 db.students.find()
@@ -1051,3 +1052,28 @@ secure标志是cookie唯一一个非名值对儿的部分，直接包含一个se
 - `document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 GMT";`
 - 当删除的时候不必指定cookie的值
 - 删除 cookie 非常简单。您只需要设置 expires 参数为以前的时间即可
+
+#### 7.2.2.session
+
+cookie中的name和value一般都是服务器发送给客户端。由于js可以操作cookie从而达到伪造的效果，故一般重要信息都不会直接传给浏览器（客户端）。
+
+node中session插件：express-session
+
+session：
+
+- 主要是将重要的内容保存在服务器，将数据的映射通过cookie发送给浏览器（客户端）。
+
+```javascript
+// 就比如用户名
+var user = {
+    nickname : wpc,
+    age:17,
+   	cardId:888888,
+    password:123456
+};
+//这样通过映射：就解决了内容泄露给浏览器的安全问题了
+var session = {
+    1:user
+}
+```
+
