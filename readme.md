@@ -207,7 +207,7 @@ response.setHeader('Content-type','text/plain;charset=utf-8');
 
 语法:
 
-```javas
+```javascript
 var 自定义变量名称 = require('模块')；
 ```
 
@@ -238,14 +238,27 @@ exports.c = function(){
 exports替换：
 
 ```javascript
-modules.exports = 123;
+module.exports = 123;
 
 //modules.exports只能导出一个函数、对象或字符串
-modules.exports = 'hello';
+module.exports = 'hello';
 
 ```
 
 简而言之：一种是导出exports对象，另一种是将exports替换进行导出。
+
+```javascript
+//假设引入的文件是a.js 而导出的文件是b.js，那么第一种方法
+var b = require('./b.js');
+console.log(b);  //输出的是exports对象
+
+//假设引入的文件是b.js，而导出的文件是b.js,那么第二种方法
+var b = require('./b.js');
+console.log(b); //输出hello
+
+```
+
+
 
 
 
@@ -382,6 +395,27 @@ npm init
 - npm --help
   - 查看使用帮助
   - npm 特定命令 --help：查看特定命令的使用帮助
+
+#### 4.1.5.1.npm安装额外命令
+
+```shell
+# 安装模块到项目目录下
+npm install moduleName
+
+# -g 将模块安装到全局
+npm install -g moduleName
+
+# -save 的意思：安装模块的同时，在package文件的dependencies节点写入依赖
+npm install --save moduleName
+
+#--save-dev:安装模块的同时，在package文件的devDependecies节点写入依赖
+npm install --save-dev moduleName
+```
+
+说明：
+
+- 在5.0版本之后，--save 和没有 --save之间已经没有区别，所有npm安装的包都会
+- 
 
 
 
