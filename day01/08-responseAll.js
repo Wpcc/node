@@ -5,11 +5,13 @@
   html
   不管什么数据，服务器响应给浏览器的数据只有字符串。
  */
-var http = require('http');
-var fs = require('fs');
+const http = require('http')
+const fs = require('fs')
+const url = require('url')
 
 var server = http.createServer();
 server.on('request',function(req,res){
+  console.log(req.url)
   var url = req.url;
   if(url === '/'){
     fs.readFile('./resource/index.html',function(err,data){

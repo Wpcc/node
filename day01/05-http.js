@@ -1,9 +1,15 @@
-// 给客户端传数据
-var http = require('http');
-var server = http.createServer();
-server.on('request',function(request,response){
+/*
+  更加全面的服务器：
+    包括路由处理
+*/
+const http = require('http');
+const url = require('url');
+
+http.createServer(function(request,response){
   response.setHeader('Content-Type','text/plain;charset=utf-8')
-  switch(request.url){
+  const pathname = url.parse(request.url).pathname
+
+  switch(pathname){
     case '/':
       response.write('index');
       break;
@@ -14,11 +20,9 @@ server.on('request',function(request,response){
       response.write('注册');
       break;
       default:
-      response.write('index');
+      response.write('404');
   }
   response.end();
-  response.end();
-})
-server.listen('3000',function(){
+}).listen(3000,function(){
     console.log("服务器已启动成功！");
 })

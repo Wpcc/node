@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="91564212-f6f9-4fe2-93ca-d8b78f374253" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/day01/00-helloworld.js" beforeDir="false" afterPath="$PROJECT_DIR$/day01/00-helloworld.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day01/02-readFile.js" beforeDir="false" afterPath="$PROJECT_DIR$/day01/02-readFile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day01/03-writeFile.js" beforeDir="false" afterPath="$PROJECT_DIR$/day01/03-writeFile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day01/04-http.js" beforeDir="false" afterPath="$PROJECT_DIR$/day01/04-http.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day01/05-http.js" beforeDir="false" afterPath="$PROJECT_DIR$/day01/05-http.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day01/06-module/a.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day01/06-module/b.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day01/07-module02/a.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day01/07-module02/b.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day01/08-responseAll.js" beforeDir="false" afterPath="$PROJECT_DIR$/day01/08-responseAll.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day01/data/writeFile.txt" beforeDir="false" afterPath="$PROJECT_DIR$/day01/data/writeFile.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day02/01-http-helloWorld.js" beforeDir="false" afterPath="$PROJECT_DIR$/day02/01-http-helloWorld.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day02/02-likeApache.js" beforeDir="false" afterPath="$PROJECT_DIR$/day02/02-likeApache.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day02/www/apple/login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day06/example02/cookie.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day06/example02/session.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day06/node_modules/express-session/HISTORY.md" beforeDir="false" afterPath="$PROJECT_DIR$/day06/node_modules/express-session/HISTORY.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day06/node_modules/express-session/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/day06/node_modules/express-session/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day06/node_modules/express-session/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/day06/node_modules/express-session/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day06/node_modules/express-session/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/day06/node_modules/express-session/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day06/node_modules/express-session/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/day06/node_modules/express-session/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day06/node_modules/express-session/session/cookie.js" beforeDir="false" afterPath="$PROJECT_DIR$/day06/node_modules/express-session/session/cookie.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day06/node_modules/express-session/session/memory.js" beforeDir="false" afterPath="$PROJECT_DIR$/day06/node_modules/express-session/session/memory.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day06/node_modules/express-session/session/session.js" beforeDir="false" afterPath="$PROJECT_DIR$/day06/node_modules/express-session/session/session.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day06/node_modules/express-session/session/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/day06/node_modules/express-session/session/store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day06/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/day06/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day06/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/day06/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="12" />
+    <option name="width" value="1346" />
+    <option name="height" value="785" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="91564212-f6f9-4fe2-93ca-d8b78f374253" name="Default Changelist" comment="" />
+      <created>1550626183380</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1550626183380</updated>
+      <workItem from="1550626195232" duration="358000" />
+      <workItem from="1550844393191" duration="110000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="468000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="12" y="0" width="1346" height="785" extended-state="0" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+</project>

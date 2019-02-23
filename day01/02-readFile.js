@@ -3,10 +3,10 @@
 2.将读取的二进制数据转码呈现
  */
 
-var fs = require('fs');
-fs.readFile('./data/hello.txt',function(err,data){
+const fs = require('fs')
+fs.readFile('./data/hello.txt',(err, data)=> {
   if(err){
-    console.log('无法读取文件。');
+    console.log(err);
   }else{
     console.log(data.toString());
   }

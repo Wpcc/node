@@ -1,25 +1,28 @@
-var http = require('http');
-var fs = require('fs');
+/*
+让服务器能够自动响应并返回对应路径页面:
+  并不完善。
+  在现实使用中，如输入login往往会自动查找login/index.html
+  输入index也会对应index.html
+*/
+const http = require('http')
+const fs = require('fs')
+const url = require('url')
+const path = require('path')
 
-var server = http.createServer();
-// 创建www目录
-var wwwDir = 'C:/Users/Administrator/Desktop/nodejs/day02/www';
-server.on('request',function(req,res){
-  // 对请求路径进行处理：从而使其满足本地路径
-  var filePath = req.url;
-  console.log(filePath);
-  console.log(wwwDir + filePath);
-  if(filePath === '/'){
-    filePath = '/index.html';
-  }
-  fs.readFile(wwwDir+filePath,function(err,data){
-    // 如果没有该文件，也就是读取内容失败
+function resolve(dirname, filename = ''){
+  return path.resolve(__dirname, dirname, filename)
+}
+
+http.createServer((req, res) => {
+  const pathname = url.parse(req.url).pathname
+  // 读取www目录下的文件
+  fs.readFile(resolve('./www', `./${pathname}`),(err, data) => { //resolve拼接不允许出现第二个绝对路径
+    // 如果没有该文件，读取内容失败
     if(err){
-      return res.end('404 NOT FOUND!');
+      return res.end('404 NOT FOUND')
     }
     res.end(data)
   })
-})
-server.listen(3000,function(){
+}).listen(3000,() => {
   console.log('server is running');
 })

@@ -1,9 +1,12 @@
-var fs = require('fs');
+/*
+  写入文件：
+*/
 
-fs.writeFile('./data/writeFile.txt','hello writeFile',function(err){
+//10
+const fs = require('fs')
+fs.writeFile('./data/writeFile.txt','hello node',(err)=>{
   if(err){
-    console.log('写入文件内容失败！');
-    return false;
+    console.log('error');
   }
-  console.log('写入文件内容成功！');
+  console.log('success');
 })

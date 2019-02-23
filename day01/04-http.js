@@ -9,8 +9,9 @@ var http = require('http');
 
 var server = http.createServer();
 
-server.on('request',function(){
-  console.log('客户端请求成功');
+server.on('request',function(request, response){
+  response.setHeader('Content-Type','text/plain;chaset=utf-8')
+  response.end('hello node')
 })
 
 server.listen(3000,function(){

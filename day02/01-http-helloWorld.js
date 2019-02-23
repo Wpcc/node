@@ -1,14 +1,16 @@
-var http = require('http');
-var server = http.createServer();
-server.on('request',function(req,res){
+/*
+以下代码存在bug：
+  原因在于并未对req.url解析，以致于当输出查询字符串比如login?name=zhangsan时
+*/
+const http = require('http')
+http.createServer((req, res) => {
+  res.setHeader('Content-Type','text/plain;charset=utf-8')
+
   if(req.url === '/'){
-    res.setHeader('Content-Type','text/plain;charset=utf-8');
-    res.end('hello world!');
+    res.end('hello node')
   }else{
-      res.setHeader('Content-Type','text/plain;charset=utf-8');
-      res.end('404 not found!');
+    res.end('404 NOT FOUND')
   }
-})
-server.listen(3000,function(){
-  console.log('server is running');
+}).listen(3000,() => {
+  console.log('server is running')
 })
